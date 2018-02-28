@@ -3,7 +3,7 @@
 ## Requirements:
 
 * Use Google Maps API and Places API Web Service
-* Display restaruants in San Francisco onto the map as markers
+* Display restaurants in San Francisco onto the map as markers
 * Use the specified Google Places API key
 * When user taps on a Marker, App should display another screen showing details of the selected restaurant
 
@@ -14,11 +14,11 @@
 * How many Markers should the app show on the screen, based on GMaps settings?
 * Marker API: We can use GoogleMap.OnMarkerClickListener to get the Marker that is clicked to show a bottom sheet
 
-# Places API:
+## Places API:
 * How to get data on restaruants for a given location? Use Place Searches (Nearby Search) with parameters: api key, restaurant type, location, radius in meters from location
 * How to get specific data on a restaurant? Use Place Details with a placeid. Can be done with GeoDataClient
 
-# Minimum Specification:
+## Minimum Specification:
 * The application will use MVP, so it consists of one activity as a view with a presenter
 * The presenter will contain an Interactor for GMaps and Places
 * The application will get restaurant data in two ways, either remotely from Places API, or by a local Sqlite3 database to save time and API calls
@@ -27,5 +27,5 @@
 * Decide what markers to display and what to hide based on Map callbacks
 * Display details by using a callback for a selected marker to present a BottomSheetFragment, and use cached data to access details
 
-# Post min-spec tasks:
+## Post min-spec tasks:
 * Unit tests with Mockito
