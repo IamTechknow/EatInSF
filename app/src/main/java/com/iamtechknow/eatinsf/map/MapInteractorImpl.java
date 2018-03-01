@@ -16,16 +16,18 @@ public class MapInteractorImpl implements MapInteractor {
     //Used to center the map to San Francisco. Uses Diamond Street and 24th Street as the location
     private static final LatLng CENTER_OF_SF = new LatLng(37.751196, -122.436377);
 
-    //Define an initial zoom level, and zoom levels for which restaurants can load.
-    private static final int DEFAULT_ZOOM = 12, MIN_LOADING_ZOOM = 13, MAX_LOADING_ZOOM = 20;
+    //Define an initial zoom level and a range for which restaurants can load. This helps prevent extraneous API calls
+    private static final float DEFAULT_ZOOM = 12.5f, MIN_LOADING_ZOOM = 13.5f, MAX_LOADING_ZOOM = 17.5f;
 
-    private static final int MAX_RADIUS_M = 4000;
+    //The maximum radius for loading restaurants. Capping the radius helps keeps markers inside the screen.
+    private static final int MAX_RADIUS_M = 2000;
 
     //Gmaps instance
     private GoogleMap gMaps;
 
     private MapCallbacks callback;
 
+    //Shows most or all of SF (depending on the device's screen density)
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gMaps = googleMap;
