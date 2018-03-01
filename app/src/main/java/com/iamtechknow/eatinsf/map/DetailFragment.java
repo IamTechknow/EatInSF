@@ -38,7 +38,6 @@ public class DetailFragment extends BottomSheetDialogFragment {
 
         //Acquire text views and fill them with useful information
         if(rest != null && details != null) {
-            name.setText(rest.getName());
             address.setText(details.getAddress());
             phone_number.setText(details.getPhoneNumber());
             price.setText(getPriceDescription(details.getPriceLevel()));
@@ -47,6 +46,12 @@ public class DetailFragment extends BottomSheetDialogFragment {
             //Set the Google Maps URL as a Link, which must be shown
             url.setText(Html.fromHtml(urlAsHtml(details.getUrl())));
             url.setMovementMethod(LinkMovementMethod.getInstance());
+
+            //If website present, add as hyperlink to the name
+            name.setText(details.getWebsite() != null ?
+                Html.fromHtml(addWebsiteToName(rest.getName(), details.getWebsite())) : rest.getName());
+            if(details.getWebsite() != null)
+                name.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
         return root;
@@ -78,5 +83,9 @@ public class DetailFragment extends BottomSheetDialogFragment {
     //Turn the URL into a hyperlink with text
     private String urlAsHtml(String url) {
         return String.format(Locale.US, "<a href=\"%s\">View in Google Maps</a>", url);
+    }
+
+    private String addWebsiteToName(String name, String url) {
+        return String.format(Locale.US, "<a href=\"%s\">%s</a>", url, name);
     }
 }

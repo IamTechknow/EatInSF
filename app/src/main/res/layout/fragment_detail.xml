@@ -3,36 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/detail_frag_padding">
     <TextView
         android:id="@+id/name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         tools:text="@tools:sample/full_names" />
     <TextView
         android:id="@+id/address"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:text="@tools:sample/full_names" />
     <TextView
         android:id="@+id/phone_number"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:text="@tools:sample/cities" />
     <TextView
         android:id="@+id/price_range"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@tools:sample/cities" />
-    <TextView
-        android:id="@+id/maps_link"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:text="@tools:sample/cities" />
     <TextView
         android:id="@+id/rating"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:text="@tools:sample/us_phones" />
+    <TextView
+        android:id="@+id/maps_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="@tools:sample/cities" />
 </LinearLayout>

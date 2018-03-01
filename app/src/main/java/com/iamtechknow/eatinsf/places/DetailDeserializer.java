@@ -25,8 +25,9 @@ class DetailDeserializer implements JsonDeserializer<RestaurantDetail> {
                     phone = theObj.get("formatted_phone_number").getAsString(), url = theObj.get("url").getAsString();
             int level = theObj.get("price_level").getAsInt();
             float rating = theObj.get("rating").getAsFloat();
+            String possible_site = theObj.has("website") ? theObj.get("website").getAsString() : null;
 
-            detail = new RestaurantDetail(id, level, url, phone, addr, rating);
+            detail = new RestaurantDetail(id, level, url, phone, addr, possible_site, rating);
         }
 
         return detail;
