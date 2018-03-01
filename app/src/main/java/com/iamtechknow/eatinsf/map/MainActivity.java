@@ -88,7 +88,7 @@ public class MainActivity extends FragmentActivity implements MapContract.View {
      * Used to indicate internet connectivity is available to load Worldview and GIBS data.
      * Not used when internet is already available or data already obtained
      */
-    private BroadcastReceiver connectReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver connectReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION) && isOnline())

@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Parses the JSON received from the Place Search API call, and returns minimal restaurant data to be displayed as markers.
  * Note that a container object must be returned because the type adapter cannot support generic types.
  */
-public class PlacesDeserializer implements JsonDeserializer<RestaurantList> {
+class PlacesDeserializer implements JsonDeserializer<RestaurantList> {
     @Override
     public RestaurantList deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         ArrayList<Restaurant> result = new ArrayList<>();

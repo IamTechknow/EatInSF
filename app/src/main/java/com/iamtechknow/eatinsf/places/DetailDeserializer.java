@@ -11,7 +11,7 @@ import java.lang.reflect.Type;
 /**
  * Handles deserialization of data from a single Places detail API call.
  */
-public class DetailDeserializer implements JsonDeserializer<RestaurantDetail> {
+class DetailDeserializer implements JsonDeserializer<RestaurantDetail> {
     @Override
     public RestaurantDetail deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         String status = json.getAsJsonObject().get("status").getAsString();

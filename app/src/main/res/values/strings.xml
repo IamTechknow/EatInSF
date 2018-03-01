@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">EatInSF</string>
-    <string name="rating_fmt" formatted="false">Rating: %f</string>
+    <string name="rating_fmt">Rating: %1$f</string>
     <string name="no_internet">No internet access, please enable!</string>
 </resources>

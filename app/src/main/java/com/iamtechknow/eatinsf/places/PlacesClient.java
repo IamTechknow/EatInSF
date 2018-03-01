@@ -29,7 +29,7 @@ public class PlacesClient {
 
     private final String apiKey;
 
-    private PlacesAPI api;
+    private final PlacesAPI api;
 
     private LoadCallback callback;
 
