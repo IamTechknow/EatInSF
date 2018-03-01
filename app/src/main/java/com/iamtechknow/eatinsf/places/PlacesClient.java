@@ -30,8 +30,8 @@ public class PlacesClient {
 
     private static final String BASE = "https://maps.googleapis.com";
 
-    //Waiting is required before fetching the next 20 results
-    private static final int NEXT_PAGE_DELAY = 2;
+    //Waiting is required before fetching up to the next 20 results
+    private static final int NEXT_PAGE_DELAY = 3;
 
     //API key needed for Places API
     private final String apiKey;
