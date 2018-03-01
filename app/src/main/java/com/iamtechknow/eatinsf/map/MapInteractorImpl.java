@@ -20,12 +20,16 @@ public class MapInteractorImpl implements MapInteractor {
     private static final float DEFAULT_ZOOM = 12.5f, MIN_LOADING_ZOOM = 13.5f, MAX_LOADING_ZOOM = 17.5f;
 
     //The maximum radius for loading restaurants. Capping the radius helps keeps markers inside the screen.
-    private static final int MAX_RADIUS_M = 2000;
+    //Setting a move threshold helps prevent loading due to accidental swipes.
+    private static final int MAX_RADIUS_M = 2000, MOVE_THRESHOLD = 150;
 
     //Gmaps instance
     private GoogleMap gMaps;
 
     private MapCallbacks callback;
+
+    //Keep track of where the map center was to calculate moved distance
+    private LatLng previousCenter;
 
     //Shows most or all of SF (depending on the device's screen density)
     @Override
@@ -34,6 +38,8 @@ public class MapInteractorImpl implements MapInteractor {
         gMaps.moveCamera(CameraUpdateFactory.newLatLngZoom(CENTER_OF_SF, DEFAULT_ZOOM));
         gMaps.setOnMarkerClickListener(this);
         gMaps.setOnCameraIdleListener(this);
+
+        previousCenter = CENTER_OF_SF;
     }
 
     /**
@@ -73,8 +79,11 @@ public class MapInteractorImpl implements MapInteractor {
     //based on zoom level.
     @Override
     public void onCameraIdle() {
-        if(callback != null && shouldLoadLocations())
+        if(callback != null && shouldLoadLocations(gMaps.getCameraPosition().target))
             callback.onCameraIdle(gMaps.getCameraPosition().target);
+
+        //Update the map center
+        previousCenter = gMaps.getCameraPosition().target;
     }
 
     public void setCallback(MapInteractor.MapCallbacks callback) {
@@ -85,8 +94,20 @@ public class MapInteractorImpl implements MapInteractor {
         callback = null;
     }
 
-    private boolean shouldLoadLocations() {
+    //Is zoom level adequate, and did the user move the map enough?
+    //Good idea, but the distance calculation needs to take into account of zoom for it to really work.
+    private boolean shouldLoadLocations(LatLng newCoords) {
         float zoom = gMaps.getCameraPosition().zoom;
-        return zoom >= MIN_LOADING_ZOOM && zoom <= MAX_LOADING_ZOOM;
+        if(!(zoom >= MIN_LOADING_ZOOM && zoom <= MAX_LOADING_ZOOM))
+            return false;
+
+        //Calculate the distance between the old and new map centers
+        Location oldCenter = new Location("oldCenter"), newCenter = new Location("newCenter");
+        oldCenter.setLatitude(previousCenter.latitude);
+        oldCenter.setLongitude(previousCenter.longitude);
+        newCenter.setLatitude(newCoords.latitude);
+        newCenter.setLongitude(newCoords.longitude);
+
+        return oldCenter.distanceTo(newCenter) > MOVE_THRESHOLD;
     }
 }
