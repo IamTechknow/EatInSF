@@ -15,17 +15,18 @@
 * Marker API: We can use GoogleMap.OnMarkerClickListener to get the Marker that is clicked to show a bottom sheet
 
 ## Places API:
-* How to get data on restaruants for a given location? Use Place Searches (Nearby Search) with parameters: api key, restaurant type, location, radius in meters from location
+* How to get data on restaurants for a given location? Use Place Searches (Nearby Search) with parameters: api key, restaurant type, location, radius in meters from location
 * How to get specific data on a restaurant? Use Place Details with a placeid. Can be done with GeoDataClient
 
 ## Minimum Specification:
 * The application will use MVP, so it consists of one activity as a view with a presenter
 * The presenter will contain an Interactor for GMaps and Places
 * The application will get restaurant data in two ways, either remotely from Places API, or by a local Sqlite3 database to save time and API calls
-* Obtain Places API data by using Retrofit and a GsonDeserializer adapter to deserialize the data into our Restaruant model
+* Obtain Places API data by using Retrofit and a GsonDeserializer adapter to deserialize the data into our Restaurant model
 * Use the restaurant data to display Markers on the map
 * Decide what markers to display and what to hide based on Map callbacks
 * Display details by using a callback for a selected marker to present a BottomSheetFragment, and use cached data to access details
 
 ## Post min-spec tasks:
 * Unit tests with Mockito
+* Handle configuration changes

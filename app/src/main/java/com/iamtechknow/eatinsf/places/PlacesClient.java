@@ -22,7 +22,7 @@ public class PlacesClient {
     public interface LoadCallback {
         void onEventsLoaded(List<Restaurant> data);
 
-        void onDetailLoaded(RestaurantDetail detail);
+        void onDetailLoaded(Restaurant r, RestaurantDetail detail);
     }
 
     private static final String BASE = "https://maps.googleapis.com";
@@ -65,13 +65,13 @@ public class PlacesClient {
     /**
      * For a given location, query the Places API to get more info about it.
      */
-    public Disposable getRestaurantDetail(String placesId) {
-        return api.getDetails(apiKey, placesId)
+    public Disposable getRestaurantDetail(Restaurant r) {
+        return api.getDetails(apiKey, r.getPlacesId())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(detail -> {
                 if(callback != null)
-                    callback.onDetailLoaded(detail);
+                    callback.onDetailLoaded(r, detail);
             });
     }
 

@@ -12,8 +12,16 @@ public interface MapInteractor extends OnMapReadyCallback, GoogleMap.OnMarkerCli
 
     //Callback for camera idling, implemented by Presenter
     interface MapCallbacks {
-        void onCameraIdle();
+        void onCameraIdle(LatLng center);
 
         void onMarkerSelected(LatLng coord);
     }
+
+    int calculateRadius();
+
+    void placeMarker(LatLng coord);
+
+    void setCallback(MapInteractor.MapCallbacks callback);
+
+    void removeCallback();
 }
