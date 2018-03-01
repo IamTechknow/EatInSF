@@ -1,9 +1,12 @@
 package com.iamtechknow.eatinsf.places;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Model representation for more detailed Restaurant information that would be displayed to the user.
  */
-public class RestaurantDetail {
+public class RestaurantDetail implements Parcelable {
     enum PriceLevel {FREE, INEXPENSIVE, MODERATE, EXPENSIVE, VERY_EXPENSIVE}
 
     private final String placesid;
@@ -21,6 +24,27 @@ public class RestaurantDetail {
         address = addr;
         rating = _rating;
     }
+
+    protected RestaurantDetail(Parcel in) {
+        placesid = in.readString();
+        priceLevel = getPriceLevel(in.readInt());
+        url = in.readString();
+        phoneNumber = in.readString();
+        address = in.readString();
+        rating = in.readFloat();
+    }
+
+    public static final Creator<RestaurantDetail> CREATOR = new Creator<RestaurantDetail>() {
+        @Override
+        public RestaurantDetail createFromParcel(Parcel in) {
+            return new RestaurantDetail(in);
+        }
+
+        @Override
+        public RestaurantDetail[] newArray(int size) {
+            return new RestaurantDetail[size];
+        }
+    };
 
     public PriceLevel getPriceLevel() {
         return priceLevel;
@@ -77,5 +101,20 @@ public class RestaurantDetail {
         }
 
         return false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(placesid);
+        dest.writeInt(priceLevel.ordinal());
+        dest.writeString(url);
+        dest.writeString(phoneNumber);
+        dest.writeString(address);
+        dest.writeFloat(rating);
     }
 }

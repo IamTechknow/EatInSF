@@ -1,22 +1,41 @@
 package com.iamtechknow.eatinsf.places;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.android.gms.maps.model.LatLng;
 
 /**
  * Model representation for a Restaurant. More detailed information is separated to another class.
  */
-public class Restaurant {
+public class Restaurant implements Parcelable {
     private final String name;
     private final String placesid;
     private final LatLng coords;
-
-
 
     public Restaurant(String _name, String id, LatLng coord) {
         name = _name;
         placesid = id;
         coords = coord;
     }
+
+    protected Restaurant(Parcel in) {
+        name = in.readString();
+        placesid = in.readString();
+        coords = in.readParcelable(LatLng.class.getClassLoader());
+    }
+
+    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
+        @Override
+        public Restaurant createFromParcel(Parcel in) {
+            return new Restaurant(in);
+        }
+
+        @Override
+        public Restaurant[] newArray(int size) {
+            return new Restaurant[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -51,5 +70,17 @@ public class Restaurant {
         }
 
         return false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(placesid);
+        dest.writeParcelable(coords, flags);
     }
 }
