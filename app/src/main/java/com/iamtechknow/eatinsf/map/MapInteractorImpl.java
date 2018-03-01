@@ -16,6 +16,8 @@ public class MapInteractorImpl implements MapInteractor {
     //Gmaps instance
     private GoogleMap gMaps;
 
+    private MapCallbacks callback;
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gMaps = googleMap;
@@ -26,5 +28,18 @@ public class MapInteractorImpl implements MapInteractor {
     @Override
     public boolean onMarkerClick(Marker marker) {
         return false;
+    }
+
+    @Override
+    public void onCameraIdle() {
+
+    }
+
+    public void setCallback(MapInteractor.MapCallbacks callback) {
+        this.callback = callback;
+    }
+
+    public void removeCallback() {
+        callback = null;
     }
 }
