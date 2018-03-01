@@ -84,7 +84,7 @@ public class MapPresenterImpl implements MapContract.Presenter,
 
     //Add data to restaurant HashMap, populate screen with Markers
     @Override
-    public void onEventsLoaded(List<Restaurant> data) {
+    public void onDataLoaded(List<Restaurant> data) {
         //Check if the Marker already exists
         for(Restaurant r : data) {
             LatLng r_coord = r.getCoords();

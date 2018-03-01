@@ -90,8 +90,8 @@ public class MainActivity extends FragmentActivity implements MapContract.View {
     }
 
     /**
-     * Used to indicate internet connectivity is available to load Worldview and GIBS data.
-     * Not used when internet is already available or data already obtained
+     * Used to indicate internet connectivity is available to load restaurant data.
+     * Used throughout the lifetime of the app to account for network changes
      */
     private final BroadcastReceiver connectReceiver = new BroadcastReceiver() {
         @Override

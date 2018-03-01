@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PlacesClient {
     public interface LoadCallback {
-        void onEventsLoaded(List<Restaurant> data);
+        void onDataLoaded(List<Restaurant> data);
 
         void onDetailLoaded(Restaurant r, RestaurantDetail detail);
     }
@@ -65,7 +65,7 @@ public class PlacesClient {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(listObj -> {
                 if(callback != null) {
-                    callback.onEventsLoaded(listObj.list);
+                    callback.onDataLoaded(listObj.list);
                     if(listObj.page_token != null)
                         makeNextPageRequest(listObj.page_token);
                 }
@@ -105,7 +105,7 @@ public class PlacesClient {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(listObj -> {
                 if(callback != null) {
-                    callback.onEventsLoaded(listObj.list);
+                    callback.onDataLoaded(listObj.list);
                     if(listObj.page_token != null)
                         makeNextPageRequest(listObj.page_token);
                 }
