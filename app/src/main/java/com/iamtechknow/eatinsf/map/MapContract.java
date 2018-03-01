@@ -10,6 +10,8 @@ public interface MapContract {
      */
     interface View {
         void presentDetailScreen(Restaurant rest, RestaurantDetail restDetail);
+
+        void warnUserNoInternet();
     }
 
     /**
@@ -17,5 +19,9 @@ public interface MapContract {
      */
     interface Presenter extends OnMapReadyCallback {
         void detachView();
+
+        void reportNoInternet();
+
+        void reportInternet();
     }
 }

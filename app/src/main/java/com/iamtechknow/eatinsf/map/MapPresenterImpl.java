@@ -62,6 +62,21 @@ public class MapPresenterImpl implements MapContract.Presenter,
         }
     }
 
+
+    //No internet - don't try to make API queries and warn the user
+    @Override
+    public void reportNoInternet() {
+        client.removeCallback();
+        map.removeCallback();
+        view.warnUserNoInternet();
+    }
+
+    @Override
+    public void reportInternet() {
+        client.setCallback(this);
+        map.setCallback(this);
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map.onMapReady(googleMap);
