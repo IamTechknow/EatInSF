@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EatInSF</string>
+    <string name="rating_fmt" formatted="false">Rating: %f</string>
 </resources>

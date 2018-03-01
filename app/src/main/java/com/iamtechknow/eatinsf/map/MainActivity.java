@@ -1,6 +1,7 @@
 package com.iamtechknow.eatinsf.map;
 
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.SupportMapFragment;
@@ -13,6 +14,7 @@ import com.iamtechknow.eatinsf.places.RestaurantDetail;
  * Implementation of the Map View and main entry point into the application.
  */
 public class MainActivity extends FragmentActivity implements MapContract.View {
+    static final String REST_EXTRA = "rest", DETAIL_EXTRA = "detail";
 
     //Presenter
     private MapContract.Presenter presenter;
@@ -38,7 +40,13 @@ public class MainActivity extends FragmentActivity implements MapContract.View {
 
     @Override
     public void presentDetailScreen(Restaurant rest, RestaurantDetail restDetail) {
-        //TODO: implement bottom frag
+        BottomSheetDialogFragment frag = new DetailFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(REST_EXTRA, rest);
+        args.putParcelable(DETAIL_EXTRA, restDetail);
+
+        frag.setArguments(args);
+        frag.show(getSupportFragmentManager(), frag.getTag());
     }
 
     private String getAPIKey() {
