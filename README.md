@@ -21,10 +21,10 @@
 ## Minimum Specification:
 * The application will use MVP, so it consists of one activity as a view with a presenter
 * The presenter will contain an Interactor for GMaps and Places
-* The application will get restaurant data in two ways, either remotely from Places API, or by a local Sqlite3 database to save time and API calls
+* The application will get restaurant data from the Places API (caching "Content" is prohibited by the TOS)
 * Obtain Places API data by using Retrofit and a GsonDeserializer adapter to deserialize the data into our Restaurant model
 * Use the restaurant data to display Markers on the map
-* Decide what markers to display and what to hide based on Map callbacks
+* Decide what markers to display Map callbacks
 * Display details by using a callback for a selected marker to present a BottomSheetFragment, and use cached data to access details
 
 ## Post min-spec tasks:
