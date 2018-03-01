@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">EatInSF</string>
     <string name="rating_fmt">Rating: %1$.1f</string>
+    <string name="no_rating">Rating: No reviews</string>
     <string name="no_internet">No internet access, please enable!</string>
     <string name="bad_query">Sorry, couldn\'t get detailed info</string>
 </resources>

@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Model representation for more detailed Restaurant information that would be displayed to the user.
  */
 public class RestaurantDetail implements Parcelable {
-    public enum PriceLevel {FREE, INEXPENSIVE, MODERATE, EXPENSIVE, VERY_EXPENSIVE}
+    public enum PriceLevel {UNKNOWN, INEXPENSIVE, MODERATE, EXPENSIVE, VERY_EXPENSIVE}
 
     private final String placesid;
     private final PriceLevel priceLevel;
@@ -91,7 +91,7 @@ public class RestaurantDetail implements Parcelable {
             case 4:
                 return PriceLevel.VERY_EXPENSIVE;
             default:
-                return PriceLevel.FREE;
+                return PriceLevel.UNKNOWN;
         }
     }
 

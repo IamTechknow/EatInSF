@@ -41,7 +41,7 @@ public class DetailFragment extends BottomSheetDialogFragment {
             address.setText(details.getAddress());
             phone_number.setText(details.getPhoneNumber());
             price.setText(getPriceDescription(details.getPriceLevel()));
-            rating.setText(getString(R.string.rating_fmt, details.getRating()));
+            rating.setText(details.getRating() != 0.0F ? getString(R.string.rating_fmt, details.getRating()) : getString(R.string.no_rating));
 
             //Set the Google Maps URL as a Link, which must be shown
             url.setText(Html.fromHtml(urlAsHtml(details.getUrl())));
@@ -74,7 +74,7 @@ public class DetailFragment extends BottomSheetDialogFragment {
                 priceStr = "$$$$";
                 break;
             default:
-                priceStr = "Free!";
+                priceStr = "Unavailable";
         }
 
         return String.format(Locale.US, "Price Range: %s", priceStr);
