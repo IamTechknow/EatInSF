@@ -12,6 +12,10 @@ public interface PlacesAPI {
     @GET("/maps/api/place/nearbysearch/json?type=restaurant")
     Observable<RestaurantList> getNearbyPlaces(@Query("key") String apiKey, @Query("location") String loc, @Query("radius") int radius);
 
+    //Get up to next 20 results for a search query
+    @GET("/maps/api/place/nearbysearch/json?")
+    Observable<RestaurantList> getNextPage(@Query("key") String apiKey, @Query("pagetoken") String token);
+
     //Get more detailed information about a restaurant.
     @GET("/maps/api/place/details/json?type=restaurant")
     Observable<RestaurantDetail> getDetails(@Query("key") String apiKey, @Query("placeid") String id);

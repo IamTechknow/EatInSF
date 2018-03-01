@@ -19,7 +19,9 @@ class PlacesDeserializer implements JsonDeserializer<RestaurantList> {
     @Override
     public RestaurantList deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         ArrayList<Restaurant> result = new ArrayList<>();
-        String status = json.getAsJsonObject().get("status").getAsString();
+        JsonObject root = json.getAsJsonObject();
+        String status = root.get("status").getAsString();
+        String token = root.has("next_page_token") ? root.get("next_page_token").getAsString() : null;
 
         //Results present, otherwise return empty list
         if(status.equals("OK")) {
@@ -34,6 +36,6 @@ class PlacesDeserializer implements JsonDeserializer<RestaurantList> {
             }
         }
 
-        return new RestaurantList(result);
+        return new RestaurantList(result, token);
     }
 }
