@@ -16,6 +16,9 @@ public class RestaurantDetail implements Parcelable {
     private final String address;
     private final float rating;
 
+    //Dummy object that effectively serves as null, because RxJava 2 doesn't allow null to be emitted
+    public static final RestaurantDetail DUMMY = new RestaurantDetail("", 0, "", "", "", 1);
+
     public RestaurantDetail(String id, int lvl, String _url, String phone, String addr, float _rating) {
         placesid = id;
         priceLevel = getPriceLevel(lvl);

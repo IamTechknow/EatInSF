@@ -12,6 +12,8 @@ public interface MapContract {
         void presentDetailScreen(Restaurant rest, RestaurantDetail restDetail);
 
         void warnUserNoInternet();
+
+        void warnUserBadQuery();
     }
 
     /**

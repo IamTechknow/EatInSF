@@ -95,11 +95,15 @@ public class MapPresenterImpl implements MapContract.Presenter,
         }
     }
 
-    //Query successful, Add data to detail HashMap, present screen
+    //Check for successful query, add data to detail HashMap, present screen
+    //An unsuccessful query may happen if markers loaded right before quota was hit
     @Override
     public void onDetailLoaded(Restaurant r, RestaurantDetail detail) {
-        detailMap.put(r.getPlacesId(), detail);
-        view.presentDetailScreen(r, detail);
+        if(!detail.equals(RestaurantDetail.DUMMY)) {
+            detailMap.put(r.getPlacesId(), detail);
+            view.presentDetailScreen(r, detail);
+        } else
+            view.warnUserBadQuery();
     }
 
     //Request for more restaurants

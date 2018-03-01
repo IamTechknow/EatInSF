@@ -15,7 +15,7 @@ class DetailDeserializer implements JsonDeserializer<RestaurantDetail> {
     @Override
     public RestaurantDetail deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         String status = json.getAsJsonObject().get("status").getAsString();
-        RestaurantDetail detail = null;
+        RestaurantDetail detail = RestaurantDetail.DUMMY; //Account for bad queries such as going over quota
 
         //Result present, otherwise return null
         if(status.equals("OK")) {

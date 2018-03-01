@@ -74,6 +74,11 @@ public class MainActivity extends FragmentActivity implements MapContract.View {
         Snackbar.make(findViewById(android.R.id.content), R.string.no_internet, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void warnUserBadQuery() {
+        Snackbar.make(findViewById(android.R.id.content), R.string.bad_query, Snackbar.LENGTH_LONG).show();
+    }
+
     /**
      * Helper method to determine whether or not there is internet access
      * @return Whether or not there is internet access
